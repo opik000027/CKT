@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champion Karate Team Cimahi</title>
+    <!-- Link Google Fonts untuk font Montserrat dan Open Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon: Logo Champion Karate Team di tab browser -->
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+
+    <!-- CSS Internal -->
+    <style>
+        /* Smooth scrolling for navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* General Styling */
+        body {
+            font-family: 'Open Sans', sans-serif; /* Font utama untuk teks */
+            margin: 0;
+            padding: 0;
+            color: #333; /* Warna teks default */
+            line-height: 1.6;
+            background-color: #f8f8f8; /* Warna latar belakang halaman */
+            /* padding-top: 70px; DIHAPUS untuk menghilangkan celah di atas hero section */
+            scroll-padding-top: 70px; /* Menyesuaikan offset gulir agar konten tidak tertutup navbar */
+        }
+
+        .container {
+            max-width: 960px; /* Lebar maksimum konten */
+            margin: 0 auto; /* Pusatkan konten */
+            padding: 20px; /* Padding di sekitar konten */
+        }
+
+        .section-padding {
+            padding: 30px 0; /* Padding vertikal untuk setiap bagian, dikurangi agar lebih dekat */
+        }
+        
+        /* #hero-section tidak lagi memiliki padding-top spesifik, akan menggunakan padding dari .hero */
+        /* #hero-section {
+            padding-top: 30px; 
+            padding-bottom: 80px;
+        } */
+
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif; /* Font untuk judul */
+            color: #8B0000; /* Warna merah marun dari logo */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #8B0000; /* Warna link default */
+            text-decoration: none; /* Hilangkan garis bawah pada link */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Tampilkan garis bawah saat hover */
+        }
+
+        /* Buttons Styling */
+        .btn {
+            display: inline-block; /* Agar tombol bisa diatur padding dan margin */
+            padding: 12px 25px;
+            margin-top: 20px;
+            border-radius: 5px; /* Sudut membulat */
+            font-weight: 600;
+            text-transform: uppercase; /* Huruf kapital semua */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Transisi halus saat hover */
+            text-align: center;
+            white-space: nowrap; /* Mencegah teks tombol terpotong */
+        }
+
+        .primary-btn {
+            background-color: #8B0000; /* Merah marun */
+            color: #FFF; /* Teks putih */
+            border: 2px solid #8B0000;
+        }
+
+        .primary-btn:hover {
+            background-color: #6a0000; /* Merah marun lebih gelap saat hover */
+            color: #FFF;
+        }
+
+        .secondary-btn {
+            background-color: #DAA520; /* Warna emas dari logo */
+            color: #8B0000; /* Teks merah marun */
+            border: 2px solid #DAA520;
+            /* Perubahan untuk menengahkan tombol */
+            display: block; /* Membuat tombol menjadi elemen blok */
+            margin: 20px auto; /* Pusatkan secara horizontal */
+        }
+
+        .secondary-btn:hover {
+            background-color: #B8860B; /* Emas lebih gelap saat hover */
+            color: #FFF;
+        }
+
+
+        /* Header Hero Section Styling */
+        .hero {
+            background-color: #eee; /* Latar belakang abu-abu terang */
+            color: #333;
+            padding: 80px 0; /* Padding vertikal untuk hero section */
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Memastikan elemen latar belakang tidak meluber */
+            background-size: cover; /* Menyesuaikan ukuran gambar agar menutupi seluruh area */
+            background-position: center; /* Memposisikan gambar di tengah */
+            transition: background-image 1s ease-in-out; /* Transisi untuk pergantian gambar */
+        }
+
+        .hero-logo {
+            width: 200px; /* Ukuran logo, sesuaikan jika perlu */
+            height: auto;
+            margin-bottom: 20px;
+            position: relative; /* Agar logo di atas background */
+            z-index: 2; /* Pastikan logo di atas overlay */
+        }
+
+        .hero h1, .hero .tagline, .hero .btn {
+            position: relative; /* Agar teks dan tombol di atas background */
+            z-index: 2; /* Pastikan di atas overlay */
+            color: #FFF; /* Ubah warna teks agar kontras dengan gambar latar */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Tambahkan shadow agar lebih terbaca */
+        }
+
+        .hero .tagline {
+            font-size: 1.4em;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* Overlay untuk kontras teks */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Overlay gelap */
+            z-index: 1; /* Di bawah konten, di atas background image */
+        }
+
+        /* Benefits Grid Section Styling */
+        .benefits-grid {
+            display: grid;
+            /* Membuat grid responsif, minimal 250px per kolom */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px; /* Jarak antar item grid */
+            margin-top: 40px;
+        }
+
+        .benefit-item {
+            background-color: #FFF;
+            padding: 30px;
+            border-radius: 8px; /* Sudut membulat */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Efek bayangan */
+            text-align: center;
+        }
+
+        .benefit-item img {
+            max-width: 80px;
+            margin-bottom: 15px;
+        }
+
+        .benefit-item h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #DAA520; /* Emas untuk subjudul manfaat */
+        }
+
+        /* Schedule Section Styling */
+        .bg-light {
+            background-color: #f0f0f0; /* Abu-abu terang sedikit lebih gelap */
+        }
+
+        #schedule ul {
+            list-style: none; /* Hapus bullet point */
+            padding: 0;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        #schedule ul li {
+            background-color: #FFF;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            text-align: left;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #8B0000;
+            font-size: 1.1em;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #333; /* Latar belakang gelap */
+            color: #FFF; /* Teks putih */
+            padding: 15px 0; /* Padding disesuaikan agar lebih ringkas */
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #DAA520; /* Link emas di footer */
+            margin: 0 10px;
+        }
+
+        /* --- Navbar Styling --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #8B0000; /* Warna merah marun untuk navbar */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000; /* Pastikan navbar di atas konten lain */
+            padding: 10px 0;
+        }
+
+        .navbar .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-brand {
+            color: #FFF;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+                color: #FFF;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #DAA520; /* Emas saat hover */
+            text-decoration: none;
+        }
+
+        /* Hamburger Menu Icon */
+        .hamburger-menu {
+            display: none; /* Sembunyikan secara default di desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            position: relative;
+            z-index: 1001; /* Pastikan di atas menu */
+        }
+
+        .hamburger-menu .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #FFF;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        /* --- WhatsApp Fixed Button --- */
+        .whatsapp-fixed-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366; /* Warna hijau WhatsApp */
+            color: #FFF;
+            border-radius: 50%; /* Bentuk lingkaran */
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 999; /* Di atas konten tapi di bawah navbar */
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-fixed-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-fixed-btn img {
+            width: 35px; /* Ukuran ikon WhatsApp */
+            height: 35px;
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            .hero {
+                padding: 60px 0; /* Sesuaikan padding hero di mobile */
+            }
+            .section-padding {
+                padding: 40px 0; /* Sesuaikan padding section di mobile */
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr; /* Satu kolom di layar kecil */
+            }
+
+            /* --- Mobile Navbar --- */
+            .hamburger-menu {
+                display: block; /* Tampilkan hamburger di mobile */
+            }
+
+            .nav-links {
+                display: none; /* Sembunyikan menu link secara default di mobile */
+                flex-direction: column;
+                width: 100%;
+                background-color: #8B0000; /* Warna latar belakang menu mobile */
+                position: absolute;
+                top: 60px; /* Di bawah navbar */
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+                transition: all 0.3s ease-in-out;
+            }
+
+            .nav-links.active {
+                display: flex; /* Tampilkan menu saat aktif */
+            }
+
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+            }
+
+            .nav-links a {
+                padding: 15px 20px;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Fixed -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Brand logo/text in navbar, links to hero section -->
+            <a href="#hero-section" class="nav-brand">Champion Karate Team</a>
+            <button class="hamburger-menu" id="hamburger-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero-section">Beranda</a></li>
+                <li><a href="#benefits">Manfaat</a></li>
+                <li><a href="#schedule">Jadwal</a></li>
+                <li><a href="#location-contact">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Bagian Header/Hero Section -->
+    <header class="hero" id="hero-section">
+        <div class="container">
+            <!-- Logo Champion Karate Team -->
+            <img src="logo.jpg" alt="Logo Champion Karate Team" class="hero-logo">
+            <h1>Champion Karate Team</h1>
+            <!-- Slogan utama -->
+            <p class="tagline">Kembangkan Disiplin, Fokus, dan Kepercayaan Diri Anak Anda!</p>
+            <!-- Tombol pendaftaran ke Google Form (Ganti LINK_GOOGLE_FORM_ANDA) -->
+            <a href="LINK_GOOGLE_FORM_ANDA" class="btn primary-btn" target="_blank">Daftar Kelas Percobaan GRATIS Sekarang!</a>
+        </div>
+    </header>
+
+    <!-- Bagian Manfaat Program -->
+    <section id="benefits" class="section-padding">
+        <div class="container">
+            <h2>Mengapa Champion Karate Team?</h2>
+            <div class="benefits-grid">
+                <!-- Manfaat 1: Disiplin & Mental Kuat -->
+                <div class="benefit-item">
+                    <img src="https://placehold.co/60x60/DAA520/FFF?text=Disiplin" alt="Ikon Disiplin"> <!-- Placeholder icon, replace with your own if available -->
+                    <h3>Disiplin & Mental Kuat</h3>
+                    <p>Melatih fokus, ketahanan mental, dan etika yang akan berguna seumur hidup.</p>
+                </div>
+                <!-- Manfaat 2: Kebugaran Fisik Optimal -->
+                <div class="benefit-item">
+                    <img src="https://placehold.co/60x60/DAA520/FFF?text=Kebugaran" alt="Ikon Kebugaran"> <!-- Placeholder icon, replace with your own if available -->
+                    <h3>Kebugaran Fisik Optimal</h3>
+                    <p>Meningkatkan kekuatan, fleksibilitas, koordinasi, dan kesehatan jantung.</p>
+                </div>
+                <!-- Manfaat 3: Kepercayaan Diri & Keamanan Diri -->
+                <div class="benefit-item">
+                    <img src="https://placehold.co/60x60/DAA520/FFF?text=Percaya+Diri" alt="Ikon Kepercayaan Diri"> <!-- Placeholder icon, replace with your own if available -->
+                    <h3>Kepercayaan Diri & Keamanan Diri</h3>
+                    <p>Membangun keberanian dan kemampuan dasar untuk melindungi diri dalam situasi darurat.</p>
+                </div>
+                <!-- Manfaat 4: Lingkungan Aman & Menyenangkan -->
+                 <div class="benefit-item">
+                    <img src="https://placehold.co/60x60/DAA520/FFF?text=Aman" alt="Ikon Keamanan"> <!-- Placeholder icon, replace with your own if available -->
+                    <h3>Lingkungan Aman & Menyenangkan</h3>
+                    <p>Berlatih di lokasi strategis Cimahi Mall yang nyaman dan diawasi dengan ketat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian Jadwal Kelas Percobaan -->
+    <section id="schedule" class="section-padding bg-light">
+        <div class="container">
+            <h2>Jadwal Kelas Perkenalan GRATIS!</h2>
+            <p>Ayo ajak si kecil merasakan pengalaman seru berlatih Karate bersama Champion Karate Team! Pilih jadwal yang paling sesuai:</p>
+            <ul>
+                <li><strong>Setiap Senin, Rabu, Jumat:</strong> Pukul 16.00 - 18.00 WIB</li>
+            </ul>
+            <p class="highlight">Segera daftar karena tempat terbatas!</p>
+            <!-- Tombol pendaftaran kedua (Ganti LINK_GOOGLE_FORM_ANDA) -->
+            <a href="LINK_GOOGLE_FORM_ANDA" class="btn secondary-btn" target="_blank">Daftar Sekarang Juga!</a>
+        </div>
+    </section>
+
+    <!-- Bagian Lokasi & Kontak -->
+    <section id="location-contact" class="section-padding">
+        <div class="container">
+            <h2>Lokasi & Kontak Kami</h2>
+            <p><strong>Champion Karate Team - Cabang Cimahi Mall</strong></p>
+            <p>Exhibition Hall Lantai 2, Cimahi Mall</p>
+            <p>Jl. Gandawijaya No.1, Cimahi Tengah, Cimahi, Jawa Barat 40521</p>
+            <!-- Link WhatsApp -->
+            <p>WhatsApp: <a href="https://wa.me/6289655445151" target="_blank">Senpai Opik: 0896-5544-5151</a></p>
+            <!-- Email dihapus sesuai permintaan -->
+        </div>
+    </section>
+
+    <!-- Bagian Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Champion Karate Team. All rights reserved.</p>
+            <div class="social-links">
+                <!-- Link Instagram -->
+                <a href="https://instagram.com/ChampionKarateTeamCimahi" target="_blank">Instagram</a>
+                <!-- Link Facebook dihapus sesuai permintaan -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tombol WhatsApp Fixed -->
+    <a href="https://wa.me/6289655445151" target="_blank" class="whatsapp-fixed-btn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="WhatsApp Icon">
+    </a>
+
+    <!-- JavaScript Internal -->
+    <script>
+        console.log("Script Champion Karate Team dimulai."); // Log awal skrip
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Script untuk pergantian background image
+            const heroSection = document.getElementById('hero-section');
+            const images = [
+                'https://placehold.co/1200x800/8B0000/FFF?text=Karate+1', // Ganti dengan URL gambar Anda
+                'https://placehold.co/1200x800/DAA520/FFF?text=Karate+2', // Ganti dengan URL gambar Anda
+                'https://placehold.co/1200x800/333/FFF?text=Karate+3',  // Ganti dengan URL gambar Anda
+                'https://placehold.co/1200x800/8B0000/FFF?text=Karate+4', // Ganti dengan URL gambar Anda
+                'https://placehold.co/1200x800/DAA520/FFF?text=Karate+5'  // Ganti dengan URL gambar Anda
+            ];
+            let currentIndex = 0;
+
+            function changeBackground() {
+                heroSection.style.backgroundImage = `url('${images[currentIndex]}')`;
+                currentIndex = (currentIndex + 1) % images.length;
+            }
+
+            // Set initial background
+            changeBackground();
+
+            // Change background every 5 seconds
+            setInterval(changeBackground, 5000);
+
+            // Script untuk Hamburger Menu
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navLinks = document.getElementById('nav-links');
+
+            hamburgerMenu.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // Tutup menu saat link diklik (untuk mobile)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+        });
+        console.log("Script Champion Karate Team selesai."); // Log akhir skrip
+    </script>
+</body>
+</html>
